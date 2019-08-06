@@ -36,7 +36,7 @@ getLength(items, function(length){
 
 function last(arr, cb) {
   // last passes the last item of the array into the callback.
-  return cb(arr[3])
+  return cb(arr[arr.length-1])
 }
 last(items, function(lastitem){
   console.log(lastitem)
@@ -49,23 +49,20 @@ function sumNums(x, y, cb) {
 sumNums(4,6, function(sum){
   console.log(sum)
 })
+
 function multiplyNums(x, y, cb) {
   // multiplyNums multiplies two numbers and passes the result to the callback.
   return cb(x * y)
 }
 multiplyNums(2,4,(sum => console.log(sum)))
 
+
 function contains(item, list, cb) {
   // contains checks if an item is present inside of the given array/list.
   // Pass true to the callback if it is, otherwise pass false.
-  return cb(list.filter(function(list){
-    return item === list;
-  }
-  .map(function(list){
-    return console.log("true")
-  })))
+ return cb(list.includes(item))
 }
-contains(3,3, (test => console.log(test)))
+contains('Notebook',items, (test => console.log(test)))
 
 /* STRETCH PROBLEM */
 
