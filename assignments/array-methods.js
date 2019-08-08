@@ -63,7 +63,7 @@ console.log(fullName);
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runner's first names converted to uppercase because the director BECAME DRUNK WITH POWER. Convert each first name into all caps and log the result
 
-let allCaps = runners.map( name => {
+const allCaps = runners.map( name => {
     return  name.first_name.toUpperCase();
  });
 console.log(allCaps); 
@@ -71,7 +71,7 @@ console.log(allCaps);
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue.  Get a list of runners with large sized shirts so they can choose a different size. Return an array named largeShirts that contains information about the runners that have a shirt size of L and log the result
 
-let largeShirts =
+const largeShirts =
 runners.filter(function(runners){
         return  runners.shirt_size === "L"
     })
@@ -80,7 +80,7 @@ console.log(largeShirts)
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations into a ticketPriceTotal array and log the result
-let ticketPriceTotal = 
+const ticketPriceTotal = 
 runners.reduce((total, runners) => {
     return total + runners.donation
 }, 0);
@@ -105,15 +105,25 @@ const getByIdNumber = ((runners, idNumber) =>
 getByIdNumber(runners, 10)
 
 // Problem 2
-//Calucate how much the first 25 people donated total. Return the total into the first25 array
+//Calucate how much the first 25 people donated total. Return the total into first25Donated
 
-let first25 = 
-    runners.filter(runners => {
-        return runners.id <= 25
-    });
-first25.reduce((total, first25) =>{
-    return total + first25.id
-},0);
+const first25Donated = runners
+    .filter((runners) => {
+        return runners.id <= 25;
+    })
+    .reduce((sum, runners) => {
+        return sum + runners.donation;
+    },0);
 
-console.log(first25);
+console.log(first25Donated);
+
 // Problem 3
+// Create a list of Skinix employees that partisipated in the race. Return the employees first and last name, and id number in skinixEmployees.
+ 
+let skinixEmployees = runners
+    .filter(runners => {
+        return runners.company_name === "Skinix"
+    }) .map(runners => {
+        return console.log(`${runners.first_name} ${runners.last_name}, ID Number: ${runners.id}`)
+    })
+    
